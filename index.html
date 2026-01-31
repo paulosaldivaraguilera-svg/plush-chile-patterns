@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ChilePlush: Libro Maestro de Patrones</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;900&display=swap');
+        body { background-color: #525252; margin: 0; padding: 20px; font-family: 'Roboto', sans-serif; display: flex; flex-direction: column; align-items: center; }
+        .sheet { background: white; width: 210mm; height: 297mm; padding: 15mm; margin-bottom: 10mm; box-sizing: border-box; box-shadow: 0 0 15px rgba(0,0,0,0.5); position: relative; overflow: hidden; page-break-after: always; }
+        header { border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; }
+        h1 { margin: 0; font-size: 24px; text-transform: uppercase; color: #000; }
+        .meta { text-align: right; font-size: 10px; font-family: 'Roboto Mono', monospace; color: #666; }
+        svg { width: 100%; height: 80%; border: 1px dashed #ddd; }
+        .cut-line { fill: #f5f5f5; stroke: #000; stroke-width: 2px; vector-effect: non-scaling-stroke; }
+        .seam-line { fill: none; stroke: #ff0000; stroke-width: 1px; stroke-dasharray: 4,4; vector-effect: non-scaling-stroke; }
+        .grain-arrow { stroke: #0000ff; stroke-width: 1.5px; marker-end: url(#arrowhead); }
+        .notch { stroke: #00aa00; stroke-width: 3px; fill: none; }
+        .label { font-family: 'Roboto Mono', monospace; font-size: 10px; fill: #333; text-anchor: middle; }
+        .bom-table { position: absolute; bottom: 15mm; left: 15mm; width: 120mm; font-size: 10px; border-collapse: collapse; }
+        .bom-table th, .bom-table td { border: 1px solid #999; padding: 4px; text-align: left; }
+        .bom-table th { background: #eee; }
+        .scale-box { position: absolute; bottom: 15mm; right: 15mm; width: 50mm; height: 50mm; border: 1px solid #000; display: flex; align-items: center; justify-content: center; font-size: 9px; text-align: center; background: rgba(255, 255, 0, 0.05); }
+        .print-fab { position: fixed; bottom: 30px; right: 30px; background: #e11d48; color: white; font-weight: bold; padding: 20px 40px; border-radius: 50px; border: none; box-shadow: 0 5px 20px rgba(0,0,0,0.4); cursor: pointer; z-index: 1000; font-size: 16px; transition: transform 0.2s; }
+        .print-fab:hover { transform: scale(1.05); background: #be123c; }
+        @media print { body { background: none; margin: 0; padding: 0; } .sheet { box-shadow: none; margin: 0; width: 100%; height: 100vh; } .print-fab { display: none; } }
+    </style>
+</head>
+<body>
+    <button class="print-fab" onclick="window.print()">🖨️ IMPRIMIR LIBRO (A4)</button>
+    <svg style="display: none;"><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#0000ff" /></marker></defs></svg>
+    <div class="sheet">
+        <header><h1>01. Chinchilla Real</h1><div class="meta">COLECCIÓN ROEDORES | ESCALA 1:1<br>Ref: CH-001</div></header>
+        <svg viewBox="0 0 210 250">
+            <g transform="translate(10,10)"><path d="M 20,60 C 20,20 80,20 90,60 C 100,100 80,120 20,120 C 0,100 20,90 20,60 Z" class="cut-line" /><path d="M 25,60 C 25,25 75,25 85,60 C 93,93 75,115 25,115 C 10,100 25,90 25,60 Z" class="seam-line" /><text x="50" y="80" class="label">P1. Cabeza (x2)</text><line x1="90" y1="60" x2="95" y2="60" class="notch" /></g>
+            <g transform="translate(10,140)"><path d="M 20,20 C 60,0 120,20 130,80 C 140,140 100,180 60,190 C 20,170 0,130 0,80 C 0,50 10,40 20,20 Z" class="cut-line" /><path d="M 25,25 C 60,8 115,25 124,80 C 133,135 98,174 60,184 C 25,165 6,130 6,80 C 6,55 15,45 25,25 Z" class="seam-line" /><text x="60" y="100" class="label">P2. Cuerpo (x2)</text><line x1="60" y1="40" x2="60" y2="150" class="grain-arrow" /></g>
+            <g transform="translate(130,20)"><path d="M 0,80 C 0,0 70,0 70,80 L 0,80 Z" class="cut-line" /><path d="M 5,75 C 5,5 65,5 65,75 L 5,75 Z" class="seam-line" /><text x="35" y="60" class="label">P3. Oreja (x4)</text><text x="35" y="70" class="label" style="font-size:8px; fill:red">¡Usar Entretela!</text></g>
+            <g transform="translate(150,120)"><path d="M 10,0 L 40,0 L 35,120 L 15,120 Z" class="cut-line" /><text x="25" y="60" class="label" transform="rotate(90, 25, 60)">P4. Fuelle</text></g>
+        </svg>
+        <table class="bom-table"><tr><th>Pieza</th><th>Material</th><th>Nota</th></tr><tr><td>Cuerpo</td><td>Minky Gris Perla</td><td>Pelo suave hacia abajo</td></tr><tr><td>Orejas</td><td>Minky + Entretela</td><td>Rigidez media</td></tr><tr><td>Panza</td><td>Minky Blanco</td><td>Aplique circular</td></tr></table>
+        <div class="scale-box">CUADRADO DE CONTROL<br>5 x 5 cm</div>
+    </div>
+    <div class="sheet">
+        <header><h1>02. Viscacha Zen</h1><div class="meta">COLECCIÓN ROEDORES | ESCALA 1:1<br>Ref: VI-002</div></header>
+        <svg viewBox="0 0 210 250">
+            <text x="10" y="20" style="font-size:12px; fill:#666">* Usar Moldes P1, P2 y P4 de Chinchilla para cuerpo y cabeza.</text>
+            <g transform="translate(20,40)"><path d="M 10,120 C 10,20 25,0 35,0 C 45,0 60,20 60,120 L 10,120 Z" class="cut-line" /><path d="M 15,115 C 15,25 28,5 35,5 C 42,5 55,25 55,115 L 15,115 Z" class="seam-line" /><text x="35" y="80" class="label" transform="rotate(-90, 35, 80)">P5. Oreja Larga (x4)</text></g>
+            <g transform="translate(80,40)"><path d="M 20,100 C 60,100 100,50 80,20 C 60,0 20,20 10,50 L 0,60 C 20,40 50,20 70,30 C 90,40 50,90 20,90 Z" class="cut-line" /><text x="50" y="60" class="label">P6. Cola Espiral (x2)</text><text x="50" y="75" class="label" style="font-size:8px; fill:red">Rellenar firme al voltear</text></g>
+            <g transform="translate(20,180)"><rect x="0" y="0" width="80" height="50" fill="none" stroke="#999" stroke-dasharray="2,2"/><text x="40" y="-10" class="label">Guía Bordado Cara</text><path d="M 15,25 Q 25,30 35,25" fill="none" stroke="black" stroke-width="3" stroke-linecap="round"/><path d="M 45,25 Q 55,30 65,25" fill="none" stroke="black" stroke-width="3" stroke-linecap="round"/><path d="M 38,35 L 42,35 L 40,40 Z" fill="pink" stroke="black"/></g>
+        </svg>
+        <table class="bom-table"><tr><th>Pieza</th><th>Material</th><th>Nota</th></tr><tr><td>Cuerpo</td><td>Minky Beige Arena</td><td>Color desierto</td></tr><tr><td>Cara</td><td>Hilo Café</td><td>Bordar ojos "dormidos"</td></tr></table>
+        <div class="scale-box">CUADRADO DE CONTROL<br>5 x 5 cm</div>
+    </div>
+    <div class="sheet">
+        <header><h1>06. Siete Colores</h1><div class="meta">COLECCIÓN AVES | PATCHWORK | ESCALA 1:1<br>Ref: AV-006</div></header>
+        <svg viewBox="0 0 210 250">
+            <g transform="translate(20,20)"><path d="M 0,30 Q 30,10 60,30 L 60,50 Q 30,30 0,50 Z" class="cut-line" /><path d="M 5,35 Q 30,18 55,35 L 55,45 Q 30,28 5,45 Z" class="seam-line" /><text x="30" y="25" class="label">P1. Cabeza (Azul)</text><line x1="30" y1="50" x2="30" y2="45" class="notch" /></g>
+            <g transform="translate(20,80)"><path d="M 0,10 Q 30,-10 60,10 L 50,60 Q 30,40 10,60 Z" class="cut-line" /><text x="30" y="35" class="label">P2. Dorso (Verde)</text><line x1="30" y1="10" x2="30" y2="15" class="notch" /><line x1="30" y1="60" x2="30" y2="55" class="notch" /></g>
+            <g transform="translate(20,150)"><path d="M 10,10 Q 30,-10 50,10 L 40,50 Q 30,60 20,50 Z" class="cut-line" /><text x="30" y="30" class="label">P3. Vientre (Amarillo)</text><line x1="30" y1="10" x2="30" y2="15" class="notch" /></g>
+            <g transform="translate(100,20)"><path d="M 20,0 L 40,0 L 50,120 Q 30,140 10,120 L 20,0 Z" class="cut-line" /><text x="30" y="60" class="label" transform="rotate(90, 30, 60)">P4. Fuelle Base</text></g>
+            <g transform="translate(100,160)"><rect x="0" y="0" width="40" height="10" rx="5" class="cut-line" fill="#eee"/><text x="20" y="20" class="label">Antifaz (Negro)</text><circle cx="60" cy="5" r="5" class="cut-line" fill="#eee"/><text x="60" y="20" class="label">Corona (Rojo)</text></g>
+        </svg>
+        <table class="bom-table"><tr><th>Pieza</th><th>Material</th><th>Nota</th></tr><tr><td>P1, P2, P3</td><td>Velour 3 Colores</td><td>Unir con precisión en curvas</td></tr><tr><td>Detalles</td><td>Fieltro</td><td>Apliques cosidos o pegados</td></tr></table>
+        <div class="scale-box">CUADRADO DE CONTROL<br>5 x 5 cm</div>
+    </div>
+    <div class="sheet">
+        <header><h1>10. Chucao</h1><div class="meta">COLECCIÓN AVES | COLA ESTRUCTURAL | ESCALA 1:1<br>Ref: AV-010</div></header>
+        <svg viewBox="0 0 210 250">
+            <g transform="translate(20,20)"><path d="M 10,130 L 90,130 L 90,30 Q 70,10 40,30 L 10,130 Z" class="cut-line" /><path d="M 15,125 L 85,125 L 85,35 Q 65,20 45,35 L 15,125 Z" class="seam-line" /><text x="50" y="80" class="label">P1. Espalda/Cola (x2)</text><text x="50" y="90" class="label" style="font-size:8px">Gris Plomo</text><line x1="80" y1="40" x2="80" y2="120" class="grain-arrow" /></g>
+            <g transform="translate(120,20)"><path d="M 10,10 Q 40,20 40,70 Q 40,120 10,130 L 10,10 Z" class="cut-line" /><text x="25" y="70" class="label" transform="rotate(90, 25, 70)">P2. Pecho (Rufo)</text></g>
+            <g transform="translate(20,160)"><ellipse cx="40" cy="25" rx="40" ry="25" class="cut-line" /><text x="40" y="25" class="label">P3. Base (Gris)</text><text x="40" y="35" class="label" style="font-size:8px">Lleva peso</text><line x1="40" y1="0" x2="40" y2="5" class="notch" /><line x1="40" y1="50" x2="40" y2="45" class="notch" /></g>
+            <g transform="translate(120,160)"><rect x="0" y="0" width="40" height="30" class="cut-line" /><text x="20" y="15" class="label">P4. Pata (x2)</text></g>
+        </svg>
+        <table class="bom-table"><tr><th>Pieza</th><th>Material</th><th>Nota</th></tr><tr><td>P1 (L)</td><td>Velour Gris</td><td>Cola se mantiene parada sola</td></tr><tr><td>Base</td><td>Velour + Pellets</td><td>Rellenar fondo para peso</td></tr></table>
+        <div class="scale-box">CUADRADO DE CONTROL<br>5 x 5 cm</div>
+    </div>
+    <div class="sheet">
+        <header><h1>11. Puma Chileno</h1><div class="meta">COLECCIÓN FELINOS | CUADRÚPEDO | ESCALA 1:1<br>Ref: FE-011</div></header>
+        <svg viewBox="0 0 210 250">
+            <g transform="translate(10,20)"><path d="M 10,50 C 50,10 110,10 150,50 C 160,100 120,140 80,130 C 40,140 0,100 10,50 Z" class="cut-line" /><path d="M 15,55 C 50,18 110,18 145,55 C 153,95 120,132 80,124 C 40,132 7,95 15,55 Z" class="seam-line" /><circle cx="40" cy="110" r="8" fill="none" stroke="black" stroke-width="2" /><circle cx="120" cy="110" r="8" fill="none" stroke="black" stroke-width="2" /><text x="80" y="70" class="label">P3. Cuerpo (x2)</text><text x="80" y="80" class="label" style="font-size:8px">Cortar círculos patas</text><line x1="30" y1="50" x2="130" y2="50" class="grain-arrow" /></g>
+            <g transform="translate(10,160)"><path d="M 10,0 L 50,0 L 60,70 L 0,70 Z" class="cut-line" /><path d="M 15,5 L 45,5 L 53,65 L 7,65 Z" class="seam-line" /><text x="30" y="40" class="label">P5. Pata (x8)</text></g>
+            <g transform="translate(80,160)"><path d="M 30,0 C 60,0 60,70 30,70 C 0,70 0,0 30,0 Z" class="cut-line" /><text x="30" y="35" class="label">P1. Cabeza (x4)</text></g>
+            <g transform="translate(150,20)"><rect x="0" y="0" width="20" height="150" class="cut-line" /><text x="10" y="75" class="label" transform="rotate(90, 10, 75)">P6. Cola</text></g>
+        </svg>
+        <table class="bom-table"><tr><th>Pieza</th><th>Material</th><th>Nota</th></tr><tr><td>Cuerpo/Patas</td><td>Minky Arena</td><td>Pelo corto y suave</td></tr><tr><td>Hocico</td><td>Minky Blanco</td><td>Aplique en cara</td></tr><tr><td>Montaje</td><td>-</td><td>Unir patas antes de cerrar panza</td></tr></table>
+        <div class="scale-box">CUADRADO DE CONTROL<br>5 x 5 cm</div>
+    </div>
+</body>
+</html>
